@@ -1,47 +1,33 @@
 import React, { Component } from 'react';
 import {BrowserRouter, Route, Link} from 'react-router-dom';
-
-const pages = {
-    homePage: ()=>{
-      return(
-        <div>
-          <h1> Welcome to the home page </h1>
-            <Link to='/navigation'> Go to Navigation Page </Link>
-        </div>
-      )
-    },
-    articles: ()=>{
-      return(
-        <div>
-          <h1> Welcome to the Navigation Page page </h1>
-                      <h2> All Articles </h2>
-            <Link to='/navigation/1'> First Article </Link>
-        </div>
-      )
-    },
-    article1: ()=>{
-      return(
-        <div>
-          <h1> This is a first article </h1>
-          <h2> This article is about something </h2>
-            <Link to='/navigation'> Go to Navigation Page </Link>
-        </div>
-      )
-    }
-  }
-
+import PostCreate from './posts/PostCreate'; 
+import PostEdit from './posts/PostEdit'; 
+import PostDelete from './posts/PostDelete'; 
+import PostList from './posts/PostList'; 
+import PostShow from './posts/PostShow'; 
+import Header from './Header' 
 
 class App extends Component {
   
   render() {
     return (
-      <BrowserRouter>
-        <div className="container">
-           <Route path='/' exact component={pages.homePage} /> 
-           <Route path='/navigation'   exact component={pages.articles} /> 
-           <Route path='/navigation/1'  component={pages.article1} /> 
+      <div> 
+        <Header />
+        <BrowserRouter>
+          <div>
+             <Route path='/' exact component={PostList} /> 
+             <Route path='/posts/new'   exact component={PostCreate} /> 
+             <Route path='/posts/edit'  component={PostEdit} /> 
+             <Route path='/posts/delete'   exact component={PostDelete} /> 
+             <Route path='/posts/show'  component={PostShow} /> 
+          </div>
+        </BrowserRouter>
+      
+        <div class="jumbotron text-center" >
+          <p>Footer</p>
         </div>
-      </BrowserRouter>
+              
+      </div>
     );
   }
 }
